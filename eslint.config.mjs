@@ -1,31 +1,20 @@
+import js from "@eslint/js";
 import globals from "globals";
-import pluginJs from "@eslint/js";
-import configPrettier from "eslint-config-prettier";
 import pluginReact from "eslint-plugin-react";
+import { defineConfig } from "eslint/config";
 
-export default [
-  // JS / JSX 対象ファイル
+export default defineConfig([
+  {
+    ignores: ["dist/**", "webpack.*.js", "postcss.config.js"],
+  },
   {
     files: ["**/*.{js,mjs,cjs,jsx}"],
-    languageOptions: {
-      globals: globals.browser,
-      parserOptions: {
-        ecmaVersion: "latest",
-        sourceType: "module",
-        ecmaFeatures: {
-          jsx: true,
-        },
-      },
-    },
-    plugins: {
-      react: pluginReact,
-    },
-    rules: {
-      ...pluginReact.configs.recommended.rules,
-    },
+    plugins: { js },
+    extends: ["js/recommended"],
   },
-  // JS全体の基本ルール
-  pluginJs.configs.recommended,
-  // Prettierとの競合を避ける
-  configPrettier,
-];
+  {
+    files: ["**/*.{js,mjs,cjs,jsx}"],
+    languageOptions: { globals: globals.browser },
+  },
+  pluginReact.configs.flat.recommended,
+]);

@@ -4,7 +4,8 @@
   "private": "true",
   "scripts": {
     "dev": "webpack --config ./webpack.dev.js",
-    "build": "webpack --config ./webpack.prod.js"
+    "build": "webpack --config ./webpack.prod.js",
+    "lint": "eslint ."
   },
   "keywords": [],
   "author": "E-VALUE WORKS",

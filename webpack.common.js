@@ -17,15 +17,7 @@ module.exports = {
         // JS用のローダー
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: [
-          {
-            loader: "babel-loader",
-            options: {
-              presets: ["@babel/preset-env", "@babel/react"],
-              plugins: ["babel-plugin-styled-components"],
-            },
-          },
-        ],
+        use: ["babel-loader"],
       },
       {
         // SASS 用のローダー
